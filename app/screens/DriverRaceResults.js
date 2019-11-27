@@ -4,22 +4,22 @@ import {connect} from 'react-redux';
 import {styles} from './DriverList.style';
 import {styleRaceResultItem} from './DriverRaceResults.style';
 import {
-  loadRaceResultThunk,
-  nextRaceResultThunk,
-  prevRaceResultThunk,
-  reset,
-} from '../redux/raceresult';
+  loadRaceResultThunk as load,
+  nextRaceResultThunk as nextPage,
+  prevRaceResultThunk as prevPage,
+} from '../redux/raceresult.operations';
+import {reset as resetResult} from '../redux/raceresult.actions';
 
 export default connect(
   state => ({
     raceResult: state.raceResultState,
   }),
-  dispatch => ({
-    resetResult: () => dispatch(reset()),
-    load: driverId => dispatch(loadRaceResultThunk(driverId)),
-    nextPage: () => dispatch(nextRaceResultThunk()),
-    prevPage: () => dispatch(prevRaceResultThunk()),
-  }),
+  {
+    load,
+    resetResult,
+    nextPage,
+    prevPage,
+  },
 )(
   ({
     raceResult: {

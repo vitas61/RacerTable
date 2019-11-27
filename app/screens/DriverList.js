@@ -3,21 +3,21 @@ import {View, Text, FlatList, Alert, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import {styles, styleDriverItem} from './DriverList.style';
 import {
-  loadDriversThunk,
-  nextDriversThunk,
-  prevDriversThunk,
-} from '../redux/drivers';
+  loadDriversThunk as loadDrivers,
+  nextDriversThunk as nextDrivers,
+  prevDriversThunk as prevDrivers,
+} from '../redux/drivers.operations';
 import {ScreenName} from '../navigation/routes';
 
 export default connect(
   state => ({
     driversState: state.driversState,
   }),
-  dispatch => ({
-    loadDrivers: () => dispatch(loadDriversThunk()),
-    nextDrivers: () => dispatch(nextDriversThunk()),
-    prevDrivers: () => dispatch(prevDriversThunk()),
-  }),
+  {
+    loadDrivers,
+    nextDrivers,
+    prevDrivers,
+  },
 )(
   ({
     driversState: {

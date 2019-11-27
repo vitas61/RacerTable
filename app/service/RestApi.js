@@ -20,7 +20,7 @@ export const getRaceResults = (driverId, limit = 10, offset = 0) => {
 
 const _getContent = async (url, params = {}) => {
   try {
-    const responce = await axiosClient({
+    const response = await axiosClient({
       method: 'get',
       timeout: 10000,
       url,
@@ -28,10 +28,10 @@ const _getContent = async (url, params = {}) => {
     });
     return {
       error: 0,
-      data: responce.data,
+      data: response.data,
     };
   } catch (error) {
-    if (error.responce) {
+    if (error.response) {
       return {
         error: 1,
         status: error.response.status,
